@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Welcome to wang of honour, ako</h1>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.0.11/synaptic.js"></script>
+  <script>
+    var synaptic = require('synaptic'); // this line is not needed in the browser
+    var Neuron = synaptic.Neuron,
+    Layer = synaptic.Layer,
+    Network = synaptic.Network,
+    Trainer = synaptic.Trainer,
+    Architect = synaptic.Architect;
+
+    function Perceptron(input, hidden, output) {
+    	// create the layers
+    	var inputLayer = new Layer(input);
+    	var hiddenLayer = new Layer(hidden);
+    	var outputLayer = new Layer(output);
+
+    	// connect the layers
+    	inputLayer.project(hiddenLayer);
+    	hiddenLayer.project(outputLayer);
+
+    	// set the layers
+    	this.set({
+    		input: inputLayer,
+    		hidden: [hiddenLayer],
+    		output: outputLayer
+    	});
+    }
+
+    // extend the prototype chain
+    Perceptron.prototype = new Network();
+    Perceptron.prototype.constructor = Perceptron;
+  </script>
+</body>
+</html>
